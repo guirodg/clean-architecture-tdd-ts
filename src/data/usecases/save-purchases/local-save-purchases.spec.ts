@@ -45,4 +45,11 @@ describe('LocalSavePurchases', () => {
     expect(cacheStore.insertCallsCount).toBe(0)
     expect(promise).rejects.toThrow()
   })
+
+  test('Should insert new Cache if delete succeeds', async () => {
+    const { cacheStore, sut } = makeSut()
+    const promise = sut.save()
+    expect(cacheStore.insertCallsCount).toBe(1)
+    expect(cacheStore.deleteCallsCount).toBe(1)
+  })
 })
